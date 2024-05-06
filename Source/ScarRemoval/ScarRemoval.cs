@@ -10,33 +10,33 @@ using System.Reflection;
 
 namespace SyrScarRemoval
 {
-    public class ScarRemoval : Mod
-    {
-        public static ScarRemovalSettings settings;
-        public ScarRemoval(ModContentPack content) : base(content)
-        {
-            settings = GetSettings<ScarRemovalSettings>();
-        }
+	public class ScarRemoval : Mod
+	{
+		public static ScarRemovalSettings settings;
+		public ScarRemoval(ModContentPack content) : base(content)
+		{
+			settings = GetSettings<ScarRemovalSettings>();
+		}
 
-        public override string SettingsCategory() => "ScarRemovalSettings".Translate();
+		public override string SettingsCategory() => "ScarRemovalSettings".Translate();
 
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            checked
-            {
-                Listing_Standard listing_Standard = new Listing_Standard();
-                listing_Standard.Begin(inRect);
-                listing_Standard.CheckboxLabeled("ScarRemovalSettingsHardMode".Translate(), ref ScarRemovalSettings.hardMode, "ScarRemovalSettingsHardModeTooltip".Translate());
-                listing_Standard.Gap(12f);
-                listing_Standard.CheckboxLabeled("ScarRemovalSettingsapplyToAnimals".Translate(), ref ScarRemovalSettings.applyToAnimals, "ScarRemovalSettingsapplyToAnimalsTooltip".Translate());
-                listing_Standard.End();
-                settings.Write();
-            }
-        }
-        public override void WriteSettings()
-        {
-            base.WriteSettings();
-            ScarRemoval_Constructor.ApplySettings();
-        }
-    }
+		public override void DoSettingsWindowContents(Rect inRect)
+		{
+			checked
+			{
+				Listing_Standard listing_Standard = new Listing_Standard();
+				listing_Standard.Begin(inRect);
+				listing_Standard.CheckboxLabeled("ScarRemovalSettingsHardMode".Translate(), ref ScarRemovalSettings.hardMode, "ScarRemovalSettingsHardModeTooltip".Translate());
+				listing_Standard.Gap(12f);
+				listing_Standard.CheckboxLabeled("ScarRemovalSettingsapplyToAnimals".Translate(), ref ScarRemovalSettings.applyToAnimals, "ScarRemovalSettingsapplyToAnimalsTooltip".Translate());
+				listing_Standard.End();
+				settings.Write();
+			}
+		}
+		public override void WriteSettings()
+		{
+			base.WriteSettings();
+			ScarRemoval_Constructor.ApplySettings();
+		}
+	}
 }
