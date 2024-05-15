@@ -4,7 +4,12 @@
 	<SyrScarRemovalSuccessfullyHealed>{0} has successfully removed {1}'s {2} ({3}).</SyrScarRemovalSuccessfullyHealed>
 	<SyrScarRemovalSuccessfullyRegrown>{0} has successfully regrown {1}'s {2}.</SyrScarRemovalSuccessfullyRegrown>
 	<SyrScarRemovalRegrown>Regrow</SyrScarRemovalRegrown>
+	
+	<!-- Settings -->
 	<ScarRemovalSettings>Scar Removal Plus</ScarRemovalSettings>
+	<ScarRemovalSettingsCost>Cost multiplier: {0}x</ScarRemovalSettingsCost>
+	<ScarRemovalSettingsCostTooltip>Adjust scar removal surgery cost to make the game more or less difficult.\nnote: final costs will be rounded to the nearest whole number</ScarRemovalSettingsCostTooltip>
+	
 	<ScarRemovalSettingsHardMode>Enable hard mode</ScarRemovalSettingsHardMode>
 	<ScarRemovalSettingsHardModeTooltip>If enabled recipes will be more expensive.</ScarRemovalSettingsHardModeTooltip>
 	<ScarRemovalSettingsapplyToAnimals>Apply to animals</ScarRemovalSettingsapplyToAnimals>

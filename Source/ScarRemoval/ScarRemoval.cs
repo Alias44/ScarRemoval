@@ -26,7 +26,10 @@ namespace SyrScarRemoval
 			{
 				Listing_Standard listing_Standard = new Listing_Standard();
 				listing_Standard.Begin(inRect);
-				listing_Standard.CheckboxLabeled("ScarRemovalSettingsHardMode".Translate(), ref ScarRemovalSettings.hardMode, "ScarRemovalSettingsHardModeTooltip".Translate());
+
+				float diff = listing_Standard.SliderLabeled("ScarRemovalSettingsCost".Translate(ScarRemovalSettings.costAdjust.ToString("0.##")), ScarRemovalSettings.costAdjust, 1, 3, 0.6f, "ScarRemovalSettingsCostTooltip".Translate());
+				ScarRemovalSettings.costAdjust = GenMath.RoundTo(diff, 0.25f);
+
 				listing_Standard.Gap(12f);
 				listing_Standard.CheckboxLabeled("ScarRemovalSettingsapplyToAnimals".Translate(), ref ScarRemovalSettings.applyToAnimals, "ScarRemovalSettingsapplyToAnimalsTooltip".Translate());
 				listing_Standard.End();
