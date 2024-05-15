@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScarRemoval", "ScarRemoval.csproj", "{11F78F13-E120-439D-B754-1CC8F68D164C}"
+EndProject
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "RimWorldWin64", "..\..\..\..\RimWorldWin64.exe", "{E3A4E135-9223-4B1F-A7E1-22A6F1F77D49}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Program Files (x86)\Games\Steam\steamapps\common\RimWorld\RimWorldWin64.exe
+		RemoteMachine = $(computername)
+		StartingDirectory = C:\Program Files (x86)\Games\Steam\steamapps\common\RimWorld
+		Arguments = --doorstop-enabled true
+		Environment = Default
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+		IORedirection = Auto
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Debug|x64.Build.0 = Debug|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Release|x64.ActiveCfg = Release|Any CPU
+		{11F78F13-E120-439D-B754-1CC8F68D164C}.Release|x64.Build.0 = Release|Any CPU
+		{E3A4E135-9223-4B1F-A7E1-22A6F1F77D49}.Debug|Any CPU.ActiveCfg = Release|x64
+		{E3A4E135-9223-4B1F-A7E1-22A6F1F77D49}.Debug|x64.ActiveCfg = Release|x64
+		{E3A4E135-9223-4B1F-A7E1-22A6F1F77D49}.Release|Any CPU.ActiveCfg = Release|x64
+		{E3A4E135-9223-4B1F-A7E1-22A6F1F77D49}.Release|x64.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {743FE4E7-5966-4CD1-9CF5-62457E94AE97}
+	EndGlobalSection
+EndGlobal

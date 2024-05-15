@@ -28,5 +28,7 @@ namespace SyrScarRemoval
 		public static BodyPartDef Ear;
 		public static BodyPartDef Nose;
 		public static BodyPartDef Tail;
+
+		public static BodyPartDef Brain;
 	}
 }
