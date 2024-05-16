@@ -7,7 +7,7 @@ namespace SyrScarRemoval
 {
 	internal class BackCompatibilityConverter_SSR : BackCompatibilityConverter
 	{
-		public override bool AppliesToVersion(int majorVer, int minorVer) => majorVer == 0 || (majorVer == 1 && minorVer <= 5); // applies to <= 1.5
+		public override bool AppliesToVersion(int majorVer, int minorVer) => majorVer == 0 || (majorVer == 1 && minorVer <= 4); // applies to <= 1.5
 
 		public override string BackCompatibleDefName(Type defType, string defName, bool forDefInjections = false, XmlNode node = null)
 		{
