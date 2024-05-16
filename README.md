@@ -8,11 +8,11 @@ This mod allows the fixing of scars and regrowing of small body parts with glitt
 
 ## Summary
 Brain scars need additional materials since they have a much greater effect on pawns. Small body parts include:
-- Fingers
-- Toes
-- Ears
-- Noses
-- Tails (for alien pawns that use vanilla tail BodypartDef)
+[*]Fingers
+[*]Toes
+[*]Ears
+[*]Noses
+[*]Tails (for alien pawns that use vanilla tail BodypartDef)
 
 It gives alternative ways to fix the issues that can usually only be fixed with Luciferum or a Healer Mech Serum. Health issues like "Bad Back" or "Asthma" can be fixed by replacing the corresponding part and thus are not included.
 - Alzheimers
@@ -20,7 +20,7 @@ It gives alternative ways to fix the issues that can usually only be fixed with 
 - Frail
 
 ## Compatibility
-Safe to add to existing game saves (if no active caravans). Like most mods, remove at your own risk.
+Safe to add to existing game saves. Like most mods, remove at your own risk.
 
 Incompatibilities & Interactions:
 Pharmacist - make sure to enable glitterworld meds for surgeries or it will say (need material)
