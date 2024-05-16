@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Reflection;
 using RimWorld;
 using Verse;
 using Verse.AI;
 using System.Reflection;
 using System.Globalization;
+using HarmonyLib;
 
 namespace SyrScarRemoval
 {
@@ -36,18 +38,17 @@ namespace SyrScarRemoval
 
 		static ScarRemoval_Constructor()
 		{
-			AddToDict(ScarRemovalDefOf.RemoveScar);
-			AddToDict(ScarRemovalDefOf.RemoveScarBrain);
-			AddToDict(ScarRemovalDefOf.RegrowSmallBodyPart);
-			AddToDict(ScarRemovalDefOf.HealAlzheimers);
-			AddToDict(ScarRemovalDefOf.HealDementia);
-			AddToDict(ScarRemovalDefOf.HealFrailty);
+			AddToDict(ScarRemovalDefOf.SSR_RemoveScar);
+			AddToDict(ScarRemovalDefOf.SSR_RemoveScarBrain);
+			AddToDict(ScarRemovalDefOf.SSR_RegrowSmallBodyPart);
+			AddToDict(ScarRemovalDefOf.SSR_HealAlzheimers);
+			AddToDict(ScarRemovalDefOf.SSR_HealDementia);
+			AddToDict(ScarRemovalDefOf.SSR_HealFrailty);
 
 			ApplySettings();
 
 		}
 
-		public static BindingFlags all = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.SetField | BindingFlags.GetProperty | BindingFlags.SetProperty;
 		public static IEnumerable<ThingDef> allAnimals;
 		public static void ApplySettings()
 		{
@@ -58,7 +59,7 @@ namespace SyrScarRemoval
 				item.Value.Ingredient.SetBaseCount(newCost);
             }
 
-			FieldInfo recipeCachedInfo = typeof(ThingDef).GetField("allRecipesCached", all);
+			FieldInfo recipeCachedInfo = typeof(ThingDef).GetField("allRecipesCached", AccessTools.all);
 			allAnimals ??= DefDatabase<ThingDef>.AllDefs.Where((ThingDef x) => x?.race?.FleshType != null && x.race.Animal);
 
 			if (ScarRemovalSettings.applyToAnimals && allAnimals != null && recipeCachedInfo != null)

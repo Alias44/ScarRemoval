@@ -17,12 +17,13 @@ namespace SyrScarRemoval
 		{
 
 		}
-		public static RecipeDef RemoveScar;
-		public static RecipeDef RemoveScarBrain;
-		public static RecipeDef RegrowSmallBodyPart;
-		public static RecipeDef HealDementia;
-		public static RecipeDef HealAlzheimers;
-		public static RecipeDef HealFrailty;
+		public static RecipeDef SSR_RemoveScar;
+		public static RecipeDef SSR_RemoveScarBrain;
+		public static RecipeDef SSR_RegrowSmallBodyPart;
+		public static RecipeDef SSR_HealDementia;
+		public static RecipeDef SSR_HealAlzheimers;
+		public static RecipeDef SSR_HealFrailty;
+
 		public static BodyPartDef Finger;
 		public static BodyPartDef Toe;
 		public static BodyPartDef Ear;

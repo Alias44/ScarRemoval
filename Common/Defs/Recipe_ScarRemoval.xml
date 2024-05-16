@@ -2,7 +2,7 @@
 <Defs>
 
   <RecipeDef ParentName="SurgeryFlesh">
-	<defName>RemoveScar</defName>
+	<defName>SSR_RemoveScar</defName>
 	<label>remove scar</label>
 	<description>Removes scar.</description>
 	<workerClass>SyrScarRemoval.Recipe_ScarRemoval</workerClass>
@@ -34,7 +34,7 @@
   </RecipeDef>
   
   <RecipeDef ParentName="SurgeryFlesh">
-	<defName>RemoveScarBrain</defName>
+	<defName>SSR_RemoveScarBrain</defName>
 	<label>fix brain damage</label>
 	<description>Fixes brain damage.</description>
 	<workerClass>SyrScarRemoval.Recipe_ScarRemovalBrain</workerClass>
@@ -77,7 +77,7 @@
   </RecipeDef>
 
 <RecipeDef ParentName="SurgeryFlesh">
-	<defName>RegrowSmallBodyPart</defName>
+	<defName>SSR_RegrowSmallBodyPart</defName>
 	<label>regrow small body part</label>
 	<description>Regrows a small body part, like fingers, toes, ears or a nose.</description>
 	<workerClass>SyrScarRemoval.Recipe_BodyPartRegrowth</workerClass>
@@ -109,7 +109,7 @@
   </RecipeDef>
   
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>HealDementia</defName>
+    <defName>SSR_HealDementia</defName>
     <label>heal dementia</label>
     <description>Heal dementia.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
@@ -143,7 +143,7 @@
   </RecipeDef>
   
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>HealAlzheimers</defName>
+    <defName>SSR_HealAlzheimers</defName>
     <label>heal Alzheimer's</label>
     <description>Heal Alzheimer's.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
@@ -177,7 +177,7 @@
   </RecipeDef>
   
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>HealFrailty</defName>
+    <defName>SSR_HealFrailty</defName>
     <label>heal frailty</label>
     <description>Heal frailty.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
