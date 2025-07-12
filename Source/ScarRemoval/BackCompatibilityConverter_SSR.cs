@@ -3,37 +3,36 @@ using System.Xml;
 
 using Verse;
 
-namespace SyrScarRemoval
+namespace SyrScarRemoval;
+
+internal class BackCompatibilityConverter_SSR : BackCompatibilityConverter
 {
-	internal class BackCompatibilityConverter_SSR : BackCompatibilityConverter
+	public override bool AppliesToVersion(int majorVer, int minorVer) => majorVer == 0 || (majorVer == 1 && minorVer <= 4); // applies to <= 1.5
+
+	public override string BackCompatibleDefName(Type defType, string defName, bool forDefInjections = false, XmlNode node = null)
 	{
-		public override bool AppliesToVersion(int majorVer, int minorVer) => majorVer == 0 || (majorVer == 1 && minorVer <= 4); // applies to <= 1.5
-
-		public override string BackCompatibleDefName(Type defType, string defName, bool forDefInjections = false, XmlNode node = null)
+		if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
 		{
-			if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
+			if (defType == typeof(RecipeDef))
 			{
-				if (defType == typeof(RecipeDef))
-				{
-					var def = GenDefDatabase.GetDefSilentFail(defType, "SSR_" + defName, false);
+				var def = GenDefDatabase.GetDefSilentFail(defType, "SSR_" + defName, false);
 
-					if (def != null)
-					{
-						return def.defName;
-					}
+				if (def != null)
+				{
+					return def.defName;
 				}
 			}
-			return null;
 		}
+		return null;
+	}
 
-		public override Type GetBackCompatibleType(Type baseType, string providedClassName, XmlNode node)
-		{
-			return null;
-		}
+	public override Type GetBackCompatibleType(Type baseType, string providedClassName, XmlNode node)
+	{
+		return null;
+	}
 
-		public override void PostExposeData(object obj)
-		{
-			return;
-		}
+	public override void PostExposeData(object obj)
+	{
+		return;
 	}
 }

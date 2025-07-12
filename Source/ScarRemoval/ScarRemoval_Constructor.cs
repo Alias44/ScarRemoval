@@ -7,80 +7,79 @@ using Verse;
 
 using HarmonyLib;
 
-namespace SyrScarRemoval
+namespace SyrScarRemoval;
+
+[StaticConstructorOnStartup]
+public static class ScarRemoval_Constructor
 {
-	[StaticConstructorOnStartup]
-	public static class ScarRemoval_Constructor
+	public readonly struct ScarRecipe
 	{
-		public readonly struct ScarRecipe
-		{
-			public float DefaultCount { get; } = 1;
-			public IngredientCount Ingredient { get; } = null;
+		public float DefaultCount { get; } = 1;
+		public IngredientCount Ingredient { get; } = null;
 
-			public ScarRecipe(IngredientCount ingredientCount)
+		public ScarRecipe(IngredientCount ingredientCount)
+		{
+			DefaultCount = ingredientCount.GetBaseCount();
+			Ingredient = ingredientCount;
+		}
+	}
+
+	static Dictionary<RecipeDef, ScarRecipe> ScarCostBase = [];
+
+	private static void AddToDict(RecipeDef def)
+	{
+		var baseCost = def.ingredients.Find(i => i.FixedIngredient == ThingDefOf.MedicineUltratech);
+		ScarCostBase.Add(def, new ScarRecipe(baseCost));
+	}
+
+	static ScarRemoval_Constructor()
+	{
+		AddToDict(ScarRemovalDefOf.SSR_RemoveScar);
+		AddToDict(ScarRemovalDefOf.SSR_RemoveScarBrain);
+		AddToDict(ScarRemovalDefOf.SSR_RegrowSmallBodyPart);
+		AddToDict(ScarRemovalDefOf.SSR_HealAlzheimers);
+		AddToDict(ScarRemovalDefOf.SSR_HealDementia);
+		AddToDict(ScarRemovalDefOf.SSR_HealFrailty);
+
+		ApplySettings();
+
+	}
+
+	public static IEnumerable<ThingDef> allAnimals;
+	public static void ApplySettings()
+	{
+		foreach (var item in ScarCostBase)
+		{
+			float newCost = GenMath.RoundTo(item.Value.DefaultCount * ScarRemovalSettings.costAdjust, 1f);
+
+			item.Value.Ingredient.SetBaseCount(newCost);
+		}
+
+		FieldInfo recipeCachedInfo = typeof(ThingDef).GetField("allRecipesCached", AccessTools.all);
+		allAnimals ??= DefDatabase<ThingDef>.AllDefs.Where((ThingDef x) => x?.race?.FleshType != null && x.race.Animal);
+
+		if (ScarRemovalSettings.applyToAnimals && allAnimals != null && recipeCachedInfo != null)
+		{
+			foreach (ThingDef thingDef in allAnimals)
 			{
-				DefaultCount = ingredientCount.GetBaseCount();
-				Ingredient = ingredientCount;
+				foreach (var k in ScarCostBase.Keys)
+				{
+					thingDef.recipes.Add(k);
+				}
+
+				recipeCachedInfo.SetValue(thingDef, null);
 			}
 		}
-
-		static Dictionary<RecipeDef, ScarRecipe> ScarCostBase = [];
-
-		private static void AddToDict(RecipeDef def)
+		else if (!ScarRemovalSettings.applyToAnimals && allAnimals != null && recipeCachedInfo != null)
 		{
-			var baseCost = def.ingredients.Find(i => i.FixedIngredient == ThingDefOf.MedicineUltratech);
-			ScarCostBase.Add(def, new ScarRecipe(baseCost));
-		}
-
-		static ScarRemoval_Constructor()
-		{
-			AddToDict(ScarRemovalDefOf.SSR_RemoveScar);
-			AddToDict(ScarRemovalDefOf.SSR_RemoveScarBrain);
-			AddToDict(ScarRemovalDefOf.SSR_RegrowSmallBodyPart);
-			AddToDict(ScarRemovalDefOf.SSR_HealAlzheimers);
-			AddToDict(ScarRemovalDefOf.SSR_HealDementia);
-			AddToDict(ScarRemovalDefOf.SSR_HealFrailty);
-
-			ApplySettings();
-
-		}
-
-		public static IEnumerable<ThingDef> allAnimals;
-		public static void ApplySettings()
-		{
-            foreach (var item in ScarCostBase)
-            {
-				float newCost = GenMath.RoundTo(item.Value.DefaultCount * ScarRemovalSettings.costAdjust, 1f);
-
-				item.Value.Ingredient.SetBaseCount(newCost);
-            }
-
-			FieldInfo recipeCachedInfo = typeof(ThingDef).GetField("allRecipesCached", AccessTools.all);
-			allAnimals ??= DefDatabase<ThingDef>.AllDefs.Where((ThingDef x) => x?.race?.FleshType != null && x.race.Animal);
-
-			if (ScarRemovalSettings.applyToAnimals && allAnimals != null && recipeCachedInfo != null)
+			foreach (ThingDef thingDef in allAnimals)
 			{
-				foreach (ThingDef thingDef in allAnimals)
+				foreach (var k in ScarCostBase.Keys)
 				{
-					foreach(var k in ScarCostBase.Keys)
-					{
-						thingDef.recipes.Add(k);
-					}
-
-					recipeCachedInfo.SetValue(thingDef, null);
+					thingDef.recipes.Remove(k);
 				}
-			}
-			else if (!ScarRemovalSettings.applyToAnimals && allAnimals != null && recipeCachedInfo != null)
-			{
-				foreach (ThingDef thingDef in allAnimals)
-				{
-					foreach (var k in ScarCostBase.Keys)
-					{
-						thingDef.recipes.Remove(k);
-					}
 
-					recipeCachedInfo.SetValue(thingDef, null);
-				}
+				recipeCachedInfo.SetValue(thingDef, null);
 			}
 		}
 	}
