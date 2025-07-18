@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- RBSE Patch -->	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalThingBase" or @Name="Human"]/recipes</xpath>
+		<value>
+			<li>SSR_RemoveScar</li>
+			<li>SSR_RemoveScarBrain</li>
+			<li>SSR_RegrowSmallBodyPart</li>
+			<li>SSR_HealDementia</li>
+			<li>SSR_HealAlzheimers</li>
+			<li>SSR_HealFrailty</li>
+		</value>
+	</Operation>
+</Patch>
