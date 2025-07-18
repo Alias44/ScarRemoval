@@ -6,37 +6,46 @@ using Verse;
 
 namespace SyrScarRemoval;
 
-internal class Recipe_BodyPartRegrowth : RecipeWorker
+internal class Recipe_BodyPartRegrowth : Recipe_ScarRemoval
 {
 	public static HashSet<BodyPartDef> regroables = [ScarRemovalDefOf.Ear, ScarRemovalDefOf.Finger, ScarRemovalDefOf.Nose, ScarRemovalDefOf.Toe, ScarRemovalDefOf.Tail];
 
-	public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
+	protected override IEnumerable<Hediff> GetScars(Pawn pawn)
 	{
 		return pawn.health.hediffSet.hediffs
 			.Where(hediff => hediff.def == HediffDefOf.MissingBodyPart)
-			.Select(hediff => hediff.Part)
-			.Where(part => part != null)
-			.Where(part => regroables.Contains(part.def))
-			.Where(part => !pawn.health.hediffSet.AncestorHasDirectlyAddedParts(part) && !ParentIsMissing(pawn, part));
+			.Where(hediff =>
+			{
+				var part = hediff.Part;
+
+				return part != null &&
+					regroables.Contains(part.def) &&
+					!pawn.health.hediffSet.AncestorHasDirectlyAddedParts(part) &&
+					!pawn.health.hediffSet.hediffs.Exists(hediff => hediff?.Part == part.parent);
+			});
 	}
 
-	private bool ParentIsMissing(Pawn pawn, BodyPartRecord part)
+	public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
 	{
-		return pawn.health.hediffSet.hediffs.Exists(hediff => hediff?.Part == part.parent);
+		return GetScars(pawn)
+			.Select(hediff => hediff.Part)
+			.Distinct();
 	}
 
 	public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
 	{
-		Hediff hediff = pawn.health.hediffSet.hediffs.Find((Hediff x) => x.def == HediffDefOf.MissingBodyPart && x.Part == part);
+		Hediff hediff = GetScars(pawn).First();
+
 		if (hediff != null)
 		{
 			if (PawnUtility.ShouldSendNotificationAbout(pawn) || PawnUtility.ShouldSendNotificationAbout(billDoer))
 			{
-				string text;
-				text = "SyrScarRemovalSuccessfullyRegrown".Translate(
-				billDoer.LabelShort,
-				pawn.LabelShort,
-				part.Label);
+				string text = "SyrScarRemovalSuccessfullyRegrown".Translate(
+					billDoer.LabelShort,
+					pawn.LabelShort,
+					part.Label
+				);
+				
 				Messages.Message(text, pawn, MessageTypeDefOf.PositiveEvent, true);
 			}
 			pawn.health.RemoveHediff(hediff);
@@ -45,7 +54,7 @@ internal class Recipe_BodyPartRegrowth : RecipeWorker
 
 	public override string GetLabelWhenUsedOn(Pawn pawn, BodyPartRecord part)
 	{
-		Hediff hediff = pawn.health.hediffSet.hediffs.Find((Hediff x) => x.def == HediffDefOf.MissingBodyPart && x.Part == part);
-		return "SyrScarRemovalRegrown".Translate() + " " + part.Label;
+		Hediff hediff = GetScars(pawn).First();
+		return "SyrScarRemovalRegrown".Translate(part.Label);
 	}
 }

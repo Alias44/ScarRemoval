@@ -34,6 +34,5 @@ public class ScarRemoval : Mod
 	public override void WriteSettings()
 	{
 		base.WriteSettings();
-		ScarRemoval_Constructor.ApplySettings();
 	}
 }

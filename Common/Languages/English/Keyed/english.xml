@@ -3,7 +3,8 @@
 	<SyrScarRemovalHeal>Heal</SyrScarRemovalHeal>
 	<SyrScarRemovalSuccessfullyHealed>{0} has successfully removed {1}'s {2} ({3}).</SyrScarRemovalSuccessfullyHealed>
 	<SyrScarRemovalSuccessfullyRegrown>{0} has successfully regrown {1}'s {2}.</SyrScarRemovalSuccessfullyRegrown>
-	<SyrScarRemovalRegrown>Regrow</SyrScarRemovalRegrown>
+	<SyrScarRemovalRemove>Remove {0}</SyrScarRemovalRemove>
+	<SyrScarRemovalRegrown>Regrow {0}</SyrScarRemovalRegrown>
 	
 	<!-- Settings -->
 	<ScarRemovalSettings>Scar Removal Plus</ScarRemovalSettings>
