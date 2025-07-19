@@ -27,7 +27,16 @@ Pharmacist - make sure to enable glitterworld meds for surgeries or it will say 
 Rah's Bionics and Surgery Expansion - This mod will remote the RBSE scar removal recipes and slot in it's own (gated behind the appropriate research)
 
 ## License
-While I would hope that this mod constitutes as fair use and complies with the [RimWorld EULA](https://rimworldgame.com/eula/) and [Ludeon community](https://ludeon.com/forums/index.php?topic=40838.0) rules, it should be noted that the mod icon directly derived from the [Ludeon public art assets](https://ludeon.com/forums/index.php?topic=2325.0) of which Ludeon Studios is the copyright owner.
+The Original mod is unlicensed, but given this comment from the author:
+> I use the MIT license for everything
+
+\- [Syrchalis Master Dragonlayer🍆🐉](https://discord.com/channels/214523379766525963/632790371256238120/693006132641529948)
+
+(and that attempts to contact the author have met no response) I am going to operate on the assumption that the mod was intended to be MIT licensed. As such, I am attaching a LICENSE file in my name to cover any changes made to the mod since forking.
+
+### [RimWorld EULA](https://rimworldgame.com/eula/) disclaimer 
+Portions of the materials used to create this content/mod are trademarks and/or copyrighted works of Ludeon Studios Inc. All rights reserved by Ludeon. This content/mod is not official and is not endorsed by Ludeon.
+
 
 ## Thanks
 * to [Syrchalis](https://steamcommunity.com/id/Syrchalis) for making the mod [v1.0 - 1.4](https://steamcommunity.com/sharedfiles/filedetails/?id=1507367510&searchtext=scar+removal)
